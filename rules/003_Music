@@ -1,0 +1,2 @@
+pattern='(mp3|aac|wav|mp4a)$'
+target='Music'

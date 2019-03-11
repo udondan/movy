@@ -1,0 +1,2 @@
+pattern='(jpg|png|jpeg|bmp|afdesign|afphoto|psd|gif|ico|svg|tif)$'
+target='Pictures'

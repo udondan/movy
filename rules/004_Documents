@@ -1,0 +1,2 @@
+pattern='(pdf|doc|txt|key|docx|ppt|pptx|rtf|csv|epub|xls|xlsx|pages|ods|odt)$'
+target='Documents'

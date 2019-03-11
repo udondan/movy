@@ -1,0 +1,2 @@
+pattern='(html|md|json|yml|yaml|py|js|rb|sh|playground|go|htm|conf|php|xml|sql|css|coffee|ini)$'
+target='Code'

@@ -1,0 +1,2 @@
+pattern='(zip|rar|tgz|gz|pkg|dmg|rpm|tbz|bin|tar|bz2)$'
+target='Archives'

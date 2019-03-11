@@ -1,0 +1,2 @@
+pattern='/(Bildschirmfoto|Screenshot)' # we have the full file path in the var, so the pattern needs to match not from the start ^ but after any slash
+target='Screenshots'

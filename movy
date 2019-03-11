@@ -1,0 +1,14 @@
+#!/bin/bash
+
+SOURCE_DIR="/Users/daniel.schroeder/Desktop"
+TARGET_BASE="/Users/daniel.schroeder/iCollections/Ablage"
+DELAY="+1" # files will be left alone for X days
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+for rule in "${DIR}"/rules/* ; do
+    unset pattern target # will be imported by the next "source"
+    # shellcheck disable=SC1090
+    source "${rule}"
+    # shellcheck disable=SC2154
+    find "${SOURCE_DIR}" -type f -mtime ${DELAY} -maxdepth 1 \( ! -iname ".*" \) | egrep -i "${pattern}" | xargs -I '{}' mv -vn '{}' "${TARGET_BASE}/${target}"
+done
