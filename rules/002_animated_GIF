@@ -1,0 +1,14 @@
+# animated gifs!
+# requires exiftool: brew install exiftool
+
+pattern='gif$'
+target='GIF'
+
+# function returns 0 if file is a gif and has multiple frames
+function movy_filter {
+    local frames
+    frames="$(exiftool -b -FrameCount "$1" 2>/dev/null)"
+    if [[ -z "${frames}" ]]; then
+      return 1
+    fi
+}

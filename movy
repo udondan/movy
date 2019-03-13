@@ -7,8 +7,17 @@ DELAY="+1" # files will be left alone for X days
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 for rule in "${DIR}"/rules/* ; do
     unset pattern target # will be imported by the next "source"
+    unset -f movy_filter # filter function, might be defined in the next "source"
     # shellcheck disable=SC1090
     source "${rule}"
     # shellcheck disable=SC2154
-    find "${SOURCE_DIR}" -type f -mtime ${DELAY} -maxdepth 1 \( ! -iname ".*" \) | egrep -i "${pattern}" | xargs -I '{}' mv -vn '{}' "${TARGET_BASE}/${target}"
+    find "${SOURCE_DIR}" -type f -mtime ${DELAY} -maxdepth 1 \( ! -iname ".*" \) | egrep -i "${pattern}" | while read file; do
+        if declare -f movy_filter > /dev/null; then
+            if movy_filter "${file}"; then
+                mv -vn "${file}" "${TARGET_BASE}/${target}"
+            fi
+        else
+            mv -vn "${file}" "${TARGET_BASE}/${target}"
+        fi
+    done
 done
