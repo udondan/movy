@@ -1,6 +1,6 @@
 # Movy
 
-Tiny bash script to clean up your desktop.
+Tiny bash script to clean up your macOS desktop.
 
 Takes any number of rules to move files from your Desktop to pre-defined directories.
 
